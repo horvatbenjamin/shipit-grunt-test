@@ -78,18 +78,18 @@ module.exports = function (grunt) {
     grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)');
   });
   
-  grunt.shipit.on('updated', function() {
+  grunt.shipit.on('updated', function () {
     grunt.task.run(['stop']);
   });
 
 
-  grunt.registerTask('showlog',function() {
+  grunt.registerTask('showlog', function () {
     var done = this.async();
     grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 status',done);
     grunt.shipit.remote('cd ' + current + ' && cat ./app*.log',done);
   });
 
-  grunt.shipit.on('cleaned', function() {
+  grunt.shipit.on('cleaned', function () {
     grunt.task.run(['showlog']);
   });
 
