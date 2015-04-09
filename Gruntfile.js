@@ -87,7 +87,7 @@ var fn_pm2_delete = function(){
     */
 
   grunt.registerTask('stop', function () {
-    return fn_pm2_stop().then(fn_pm2_delete).then(shipit.log('stop done...'));
+    return fn_pm2_stop().then(fn_pm2_delete).then(grunt.shipit.log('stop done...'));
   });
   
   grunt.shipit.on('updated', function () {
