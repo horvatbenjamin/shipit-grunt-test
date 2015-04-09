@@ -102,7 +102,7 @@ var fn_pm2_delete = function(){
 
   grunt.registerTask('showlog', function() {
     var current = grunt.config('shipit.options.deployTo') + '/current';
-    grunt.shipit.remote('cd ' + current + ' && cat ./app*.log',this.async());
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 logs',this.async());
   });
 
 /*
