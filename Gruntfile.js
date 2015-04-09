@@ -82,15 +82,19 @@ module.exports = function (grunt) {
     grunt.task.run(['stop']);
   });
 
+  grunt.registerTask('showstatus', function () {
+    var current = grunt.config('shipit.options.deployTo') + '/current';
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 status',this.async());
 
-  grunt.registerTask('showlog', function () {
-    var done = this.async();
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 status',done);
-    grunt.shipit.remote('cd ' + current + ' && cat ./app*.log',done);
+  });
+
+  grunt.registerTask('showlog', function() {
+    var current = grunt.config('shipit.options.deployTo') + '/current';
+    grunt.shipit.remote('cd ' + current + ' && cat ./app*.log',this.async());
   });
 
   grunt.shipit.on('cleaned', function () {
-    grunt.task.run(['showlog']);
+    grunt.task.run(['showstatus','showlog']);
   });
 
 };
