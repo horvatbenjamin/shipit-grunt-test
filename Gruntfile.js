@@ -19,10 +19,18 @@ module.exports = function (grunt) {
         repositoryUrl: pkg.repository.url,
 
         // This files will not be transfered.
-        ignores: ['.git', 'node_modules'],
+        ignores: ['.git'],
 
         // Number of release to keep (for rollback).
-        keepReleases: 3
+        keepReleases: 3,
+	shallowClone: true,
+
+      npm: {
+	remote: false,
+	installFlags: ['--production'],
+      },
+
+
       },
 
     // Staging environment.
@@ -38,6 +46,7 @@ module.exports = function (grunt) {
 
   grunt.loadNpmTasks('grunt-shipit');
   grunt.loadNpmTasks('shipit-deploy');
+  grunt.loadNpmTasks('shipit-npm');
 
    /**
    * Start project on the remote server.
