@@ -73,8 +73,11 @@ module.exports = function (grunt) {
   grunt.registerTask('stop', function () {
     var done = this.async();
     var current = grunt.config('shipit.options.deployTo') + '/current';
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop `cat ./REVISION`', done);
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)', done);
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)', done);
   });
-
+  grunt.shipit.on('updated', function() {
+    grunt.task.run(['stop']);
+  });
 
 };
