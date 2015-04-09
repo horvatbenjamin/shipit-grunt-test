@@ -55,7 +55,7 @@ module.exports = function (grunt) {
   grunt.registerTask('start', function () {
 //    var done = this.async();
     var current = grunt.config('shipit.options.deployTo') + '/current';
-    grunt.shipit.remote('cd ' + current + ' && npm start', done);
+    grunt.shipit.remote('cd ' + current + ' && npm start');
   });
 
    /**
@@ -73,8 +73,8 @@ module.exports = function (grunt) {
   grunt.registerTask('stop', function () {
 //    var done = this.async();
     var current = grunt.config('shipit.options.deployTo') + '/current';
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)', done);
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)', done);
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)');
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)');
   });
   grunt.shipit.on('updated', function() {
     grunt.task.run(['stop']);
