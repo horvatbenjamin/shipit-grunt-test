@@ -48,6 +48,22 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('shipit-deploy');
   grunt.loadNpmTasks('shipit-npm');
 
+// Functions
+
+var fn_pm2_stop = function(){
+    var current = grunt.config('shipit.options.deployTo') + '/current';
+    return grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)');
+};
+
+var fn_pm2_delete = function(){
+    var current = grunt.config('shipit.options.deployTo') + '/current';
+    return grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)');
+};
+
+
+//////
+
+
    /**
    * Start project on the remote server.
    */
@@ -67,15 +83,11 @@ module.exports = function (grunt) {
   });
 
     /**
-    * Stop currently running process
+    * Stop and delete currently running process
     */
 
   grunt.registerTask('stop', function () {
-//    var done = this.async();
-    var current = grunt.config('shipit.options.deployTo') + '/current';
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)');
-    setTimeout(function() {}, 3000);
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)');
+    return fn_pm2_stop().then(fn_pm2_delete);
   });
   
   grunt.shipit.on('updated', function () {
