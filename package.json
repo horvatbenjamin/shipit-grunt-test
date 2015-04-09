@@ -5,15 +5,15 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node index"
+    "start": "node_modules/pm2/bin/pm2 start index"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/horvatbenjamin/shipit-grunt-test.git"
   },
   "license": "GPL2",
-
-  "dependencies":{
+  "dependencies": {
+    "pm2": "^0.12.10",
     "express": "^4.12.3"
   },
 
