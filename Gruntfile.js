@@ -66,4 +66,8 @@ module.exports = function (grunt) {
     grunt.task.run(['start']);
   });
 
+    /**
+    * Stop currently running process
+    */
+
 };
