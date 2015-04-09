@@ -73,9 +73,9 @@ module.exports = function (grunt) {
   grunt.registerTask('stop', function () {
 //    var done = this.async();
     var current = grunt.config('shipit.options.deployTo') + '/current';
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION) && sleep 5s');
-
-    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION) && sleep 5s');
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)');
+    setTimeout(function() {}, 3000);
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)');
   });
   
   grunt.shipit.on('updated', function () {
