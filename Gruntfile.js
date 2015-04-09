@@ -105,8 +105,9 @@ var fn_pm2_delete = function(){
     grunt.shipit.remote('cd ' + current + ' && cat ./app*.log',this.async());
   });
 
+/*
   grunt.shipit.on('cleaned', function () {
     grunt.task.run(['showstatus','showlog']);
   });
-
+*/
 };
