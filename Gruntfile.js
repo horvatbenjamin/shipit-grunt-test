@@ -106,7 +106,7 @@ var fn_pm2_delete = function(){
   });
 
   grunt.shipit.on('cleaned', function () {
-//    grunt.task.run(['showstatus','showlog']);
+    grunt.task.run(['showstatus','showlog']);
   });
 
 };
