@@ -82,4 +82,15 @@ module.exports = function (grunt) {
     grunt.task.run(['stop']);
   });
 
+
+  grunt.registerTask('showlog',funtion() {
+    var done = this.async();
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 status',done);
+    grunt.shipit.remote('cd ' + current + ' && cat ./app*.log',done);
+  });
+
+  grunt.shipit.on('cleaned', function() {
+    grunt.task.run(['showlog']);
+  });
+
 };
