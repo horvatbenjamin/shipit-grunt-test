@@ -5,7 +5,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node_modules/pm2/bin/pm2 start index"
+    "start": "node_modules/pm2/bin/pm2 -l logs/app.log start index.js"
   },
   "repository": {
     "type": "git",
