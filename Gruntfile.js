@@ -70,4 +70,11 @@ module.exports = function (grunt) {
     * Stop currently running process
     */
 
+  grunt.registerTask('stop', function () {
+    var done = this.async();
+    var current = grunt.config('shipit.options.deployTo') + '/current';
+    grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop `cat ./REVISION`', done);
+  });
+
+
 };
