@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         workspace: '/tmp/hello-world-workspace',
 
         // Project will be deployed in this directory.
-        deployTo: '/tmp/grunt-deploy',
+        deployTo: '/var/www/vhosts/mad.itk.ppke.hu/passenger/deploy-hello',
 
         // Repository url.
         repositoryUrl: pkg.repository.url,
@@ -50,7 +50,7 @@ module.exports = function (grunt) {
 
 // Functions
 
-var fn_pm2_stop = function(){
+/*var fn_pm2_stop = function(){
     var current = grunt.config('shipit.options.deployTo') + '/current';
     return grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 stop \\$(cat ./REVISION)');
 };
@@ -59,7 +59,7 @@ var fn_pm2_delete = function(){
     var current = grunt.config('shipit.options.deployTo') + '/current';
     return grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 delete \\$(cat ./REVISION)');
 };
-
+*/
 
 //////
 
@@ -86,6 +86,7 @@ var fn_pm2_delete = function(){
     * Stop and delete currently running process
     */
 
+/*
   grunt.registerTask('stop', function () {
     return fn_pm2_stop().then(fn_pm2_delete()).then(grunt.shipit.log('stop done...'));
   });
@@ -104,6 +105,7 @@ var fn_pm2_delete = function(){
     var current = grunt.config('shipit.options.deployTo') + '/current';
     grunt.shipit.remote('cd ' + current + ' && node_modules/pm2/bin/pm2 logs',this.async());
   });
+*/
 
 /*
   grunt.shipit.on('cleaned', function () {

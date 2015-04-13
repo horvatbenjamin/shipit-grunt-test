@@ -1,11 +1,11 @@
 {
-  "name": "shipit-grunt-hello",
+  "name": "deploy-hello",
   "version": "0.0.1",
   "description": "Shipit tutorial.",
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "node_modules/pm2/bin/pm2 -l app.log -p .pidfile -n $(cat ./REVISION) start index.js"
+    "start": "touch tmp/restart.txt"
   },
   "repository": {
     "type": "git",
