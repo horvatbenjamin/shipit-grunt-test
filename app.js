@@ -3,8 +3,8 @@ var app = express()
 
 console.log('Starting....');
  
-app.get('/', function (req, res) {
-  res.send('Sziasztok');
+app.get('/deploy-hello', function (req, res) {
+  res.send('Sziasztok a passanger-bol');
   console.log('request...');
 })
  
